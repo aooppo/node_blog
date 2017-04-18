@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit <%=art.title%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Edit <%= art._id %></h1>
+   <form action="/arts/save/<%=art._id%>" method="post">
+	Ttile : <input type="text" name="title" value="<%=art.title%>"><br/>
+	Body : <input type="textarea" name="body" value="<%=art.body%>"><br/>
+	<input type="hidden" name="id" value="<%=art._id%>">
+	<input  type="submit" value="save">
+   </form>
+  </body>
+</html>

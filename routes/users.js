@@ -3,6 +3,7 @@ var router = express.Router();
 const User = require("../userProvider-memory");
 const auth = require("../middlewares/auth");
 const bcrypt = require("bcrypt");
+const { route } = require('../app');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -17,8 +18,10 @@ router.post('/save', async (req, res) => {
   let {name, email, passwd} = req.body;
   let save = await User.create(name, email, passwd);
   
-  if(save) 
+  if(save){
+    req.session.user = {name,email,passwd}
     res.redirect("/");
+  }
   else 
     res.redirect("/users/register");
 });
@@ -30,7 +33,6 @@ router.get("/login", (req, res) => {
 router.post("/auth", async (req, res) => {
 
   let {email, passwd} = req.body;
-  
   if(email == undefined){
     res.redirect("/users/login");
   }
@@ -58,4 +60,8 @@ router.post("/auth", async (req, res) => {
   }
 
 });
+router.get("/logout", auth, (req, res) => {
+  req.session.user = undefined;
+  res.redirect("/");
+})
 module.exports = router;

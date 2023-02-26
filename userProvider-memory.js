@@ -3,23 +3,17 @@ const bcrypt = require('bcrypt');
 var userCounter = 1;
 let salt = bcrypt.genSaltSync(10);
 let hash =bcrypt.hashSync("teste", salt);
-var users = [
-    {
-    name:"teste",
-    email:"jubilemelo@gmail.com",
-    passwd:hash
-}
-];
+var users = [];
 
 class User{
     async create(name, email, passwd){
-        if(name == ""){
+        if(name == undefined){
             return false;
         }
-        else if(email == ""){
+        else if(email == undefined){
             return false;
         }
-        else if(passwd == "" || passwd.length < 5){
+        else if(passwd == undefined || passwd.length < 5){
             return false;
         }
         let salt = bcrypt.genSaltSync(10);

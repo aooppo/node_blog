@@ -5,7 +5,7 @@ const auth = require("../middlewares/auth");
 
 router.get('/', function(req, res, next) {
 	articleProvider.findAll( function(error,docs){
-		res.render('arts', { title: 'Article List', docs : docs });
+		res.render('arts', { title: 'Article List', docs : docs, session:req.session});
 		// res.send(docs);
 	})
 });

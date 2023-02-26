@@ -8,6 +8,7 @@ var session = require("express-session");
 var index = require('./routes/index');
 var users = require('./routes/users');
 var arts = require('./routes/arts');
+const flash = require("express-flash");
 
 var app = express();
 
@@ -20,13 +21,14 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser("fgfefh55t"));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // session
+app.use(flash())
 app.use(session({
-  secret:"fehfçeeff8397yh34",
-  cookie:{ maxAge: 1000*60*60*24 },
+  secret:"89er95j0h3k7yh34",
+  cookie:{ maxAge: 1000*60*60*24 }, // one day
   resave: true,
   saveUninitialized: true
 }));

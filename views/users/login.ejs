@@ -11,20 +11,28 @@
   <h2>Login</h2><br>
 <form action="/users/auth" method="post">
     <!-- Email input -->
+    <% if (emailError){ %>
+      <div class="alert alert-danger" role="alert">
+        <%= emailError %>
+      </div>
+      <%} %>
     <div class="form-outline mb-4">
       <input name="email" id="email" type="email" id="form2Example1" class="form-control" />
       <label class="form-label" for="form2Example1">Email address</label>
     </div>
   
     <!-- Password input -->
+    <% if (passwordError){ %>
+      <div class="alert alert-danger" role="alert">
+        <%= passwordError %>
+      </div>
+      <%} %>
     <div class="form-outline mb-4">
       <input name="passwd" id="passwd" type="password" id="form2Example2" class="form-control" />
       <label class="form-label" for="form2Example2">Password</label>
     </div>
     <p>Not a member? <a href="/users/register">Register</a></p>
-    <p>or sign up with:</p>
 
-  
     <!-- Submit button -->
     <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 

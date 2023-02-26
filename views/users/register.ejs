@@ -8,20 +8,46 @@
   </head>
   <body>
     <div class="container">
+
+
       <h2>Register</h2><br>
 <form method="post" action="/users/save">
-    <!-- Email input -->
+
+    <!-- Name input -->
+    <% if (nameError){ %>
+      <div class="alert alert-danger" role="alert">
+        <%= nameError %>
+      </div>
+      <%} %>
     <div class="form-outline mb-4">
-        <input name="name" id="name" type="text" id="form2Example1" class="form-control" />
+        <input value="<%= name %>"  name="name" id="name" type="text" id="form2Example1" class="form-control" />
         <label class="form-label" for="form2Example1">Name</label>
       </div>
 
+    <!-- Email input -->
+    <% if (emailError){ %>
+      <div class="alert alert-danger" role="alert">
+        <%= emailError %>
+      </div>
+    <%} else if(emailExistsError){%>
+      <div class="alert alert-danger" role="alert">
+        <%= emailExistsError %>
+      </div>
+    <%}%>
+
     <div class="form-outline mb-4">
-      <input name="email" id="email" type="email" id="form2Example1" class="form-control" />
+      <input value="<%= email %>"  name="email" id="email" type="email" id="form2Example1" class="form-control" />
       <label class="form-label" for="form2Example1">Email address</label>
+      <%= emailError %>
+
     </div>
   
     <!-- Password input -->
+    <% if (passwordError){ %>
+      <div class="alert alert-danger" role="alert">
+        <%= passwordError %>
+      </div>
+    <%}%>
     <div class="form-outline mb-4">
       <input name="passwd" id="passwd" type="password" id="form2Example2" class="form-control" />
       <label class="form-label" for="form2Example2">Password</label>

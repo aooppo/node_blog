@@ -1,16 +1,45 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/navbar.ejs') %>
   <body>
     <h1><%= title %>  <a href="/arts/new/">NEW</a> </h1>
+
+	<table class="table">
+		<thead>
+		  <tr>
+			<th scope="col">ID</th>
+			<th scope="col">Title</th>
+			<th scope="col">Body</th>
+			<th scope="col">Action</th>
+		  </tr>
+		</thead>
+		<tbody>
+			<% docs.forEach(doc => { %>
+
+				<tr>
+					<th scope="row"><%= doc._id %></th>
+					<td><%= doc.title  %></td>
+					<td><%= doc.body  %></td>
+					<td>	
+						<a class="btn btn-info" href="/arts/detail/<%= doc._id %>">detail</a> 
+						<a class="btn btn-warning" href="/arts/edit/<%= doc._id %>">edit</a>
+						<a class="btn btn-danger" href="/arts/delete/<%= doc._id %>">delete</a>
+					</td>
+				</tr>
+			<% }) %>
+
+		</tbody>
+	  </table>
+
+
+<!-- 	
     <ul>
 	<% for(var i=0; i<docs.length; i++) {%>
 		<%var doc = docs[i]%>
 	   <li>
-	    	<p align="center"><b><%= doc.title %> </b> </p> <%= doc.body %>     <div align="right"><a href="/arts/detail/<%= doc._id %>">detail</a>  <a href="/arts/edit/<%= doc._id %>">edit</a>  <a href="/arts/delete/<%= doc._id %>">delete</a></div>
+	    	<p align="center"><b><%= doc.title %> </b> </p> <%= doc.body %><div align="right">
+				<a class="btn btn-info" href="/arts/detail/<%= doc._id %>">detail</a> 
+				<a class="btn btn-warning" href="/arts/edit/<%= doc._id %>">edit</a>  <a class="btn btn-danger" href="/arts/delete/<%= doc._id %>">delete</a></div>
 	    	<br/>
 	    	<%if(doc.comments.length > 0) { %>
 					<% for(var x=0; x<doc.comments.length; x++) {%>
@@ -23,6 +52,9 @@
 			<hr/>
 	   </li>
 	<% } %>
-	</ul>
+	</ul> -->
+
+
+
   </body>
 </html>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-dark bg-primary navbar navbar-expand-lg">
+
+    <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+            <!-- <a class="nav-link" href="/admin/articles/" ></a> -->
+        </li>
+        
+    </ul>
+    <div class="justify-content-start">
+        <% if(session.user){%>
+            <ul class="navbar-nav ml-right ">
+                <li style="margin-right: 10px;" class="nav-item">
+                    <a class="nav-link" href="/users/logout" >Logout</a>
+                </li>      
+            </ul>
+            <%} else {%>
+                <ul class="navbar-nav ml-right ">
+                    <li style="margin-right: 10px;" class="nav-item">
+                        <a class="nav-link" href="/users/login/" >Sign in</a>
+                    </li>      
+                    <li style="margin-right: 10px;" class="nav-item">
+                        <a class="nav-link" href="/users/register/" >Sign up</a>
+                    </li>
+                </ul>
+            <%}%>
+    </div>
+</nav>

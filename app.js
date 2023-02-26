@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var session = require("express-session");
 var index = require('./routes/index');
 var users = require('./routes/users');
 var arts = require('./routes/arts');
@@ -23,6 +23,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// session
+app.use(session({
+  secret:"fehfçeeff8397yh34",
+  cookie:{ maxAge: 1000*60*60*24 },
+  resave: true,
+  saveUninitialized: true
+}));
+
+// routes
 app.use('/', index);
 app.use('/users', users);
 app.use('/arts', arts);
@@ -44,5 +53,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(8080,() => {
+  console.log("server on");
+})
 
 module.exports = app;
